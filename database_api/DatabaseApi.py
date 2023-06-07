@@ -11,9 +11,9 @@ class DatabaseApi:
         print("database exists")
 
     def parse(self, barcode):
-        self.database[barcode] = dict(count=0, type_of_material='plastic')
+        self.database[barcode] = dict(count=0)
         self.database['sales'] = 0
-        self.database.close()
+
 
     @staticmethod
     def fetch(barcode):
@@ -30,6 +30,7 @@ if __name__ == '__main__':
     while True:
         inp = input('barcode to save')
         if inp == 'do':
+            db.database.close()
             break
         db.parse(str(inp))
     while True:
