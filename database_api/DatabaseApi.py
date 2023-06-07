@@ -1,3 +1,4 @@
+
 import shelve
 import sys
 
@@ -6,22 +7,20 @@ class DatabaseApi:
 
     try:
         database = shelve.open('database')
-        #database = {}
     except FileExistsError:
         print("database exists")
 
     def parse(self, barcode):
-        self.database[barcode] = dict(count=0)
+        container_number = 1
+        self.database[barcode] = dict(count=0, name=f'refill_container{container_number}')
+        container_number += 1
         self.database['sales'] = 0
-
 
     @staticmethod
     def fetch(barcode):
         database = shelve.open('database', writeback=True)
-        #print(database)
         database[str(barcode)]['count'] += 1
         barcode_data = database.get(str(barcode))
-        #print(barcode_data)
         return barcode_data
 
 
@@ -44,4 +43,3 @@ if __name__ == '__main__':
             print()
             continue
     sys.exit(25)
-
