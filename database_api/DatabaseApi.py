@@ -4,6 +4,7 @@ import sys
 
 
 class DatabaseApi:
+    container_number = 1
 
     try:
         database = shelve.open('database')
@@ -11,10 +12,9 @@ class DatabaseApi:
         print("database exists")
 
     def parse(self, barcode):
-        container_number = 1
-        self.database[barcode] = dict(count=0, name=f'refill_container{container_number}')
-        container_number += 1
-        self.database['sales'] = 0
+        self.database[barcode] = dict(count=0, name=self.container_number)
+        self.container_number += 1
+        #self.database['sales'] = 0
 
     @staticmethod
     def fetch(barcode):
