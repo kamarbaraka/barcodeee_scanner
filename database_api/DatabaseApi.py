@@ -26,6 +26,7 @@ class DatabaseApi:
     def set_kg(barcode, kg):
         database = shelve.open('database', writeback=True)
         database[str(barcode)]['kg'] = int(kg)
+        database['total_kgs_saved'] += (int(database[str(barcode)]['count']) * int(database[str(barcode)]['kg']))
 
     @staticmethod
     def fetch(barcode):
@@ -35,7 +36,7 @@ class DatabaseApi:
             database['monthly_reuse'] = 0
         database['monthly_reuse'] += 1
         database['total_reuse'] += 1
-        database['total_kgs_saved'] += (int(database[str(barcode)]['count']) * int(database[str(barcode)]['kg']))
+        database['total_kgs_saved'] += int(database[str(barcode)]['kg'])
         barcode_data = {str(barcode): database.get(str(barcode)), 'monthly_reuse': database.get('monthly_reuse'),
                         'total_reuse': database.get('total_reuse'), 'total_kgs_saved': database['total_kgs_saved']}
         return barcode_data
