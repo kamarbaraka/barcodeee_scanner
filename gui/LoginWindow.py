@@ -6,6 +6,9 @@ from Registration import Registration
 from DatabaseApi import DatabaseApi
 
 
+'''author: kamar baraka'''
+
+
 class Login(QDialog):
 
     def __init__(self):

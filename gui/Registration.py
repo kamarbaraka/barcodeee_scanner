@@ -1,9 +1,13 @@
+
 import sys
 
 from PyQt6.QtWidgets import QWidget, QMessageBox, QLabel, QLineEdit, QPushButton, QDialog, QApplication
 from PyQt6.QtGui import QPixmap, QFont
 from PyQt6.QtCore import Qt
 from DatabaseApi import DatabaseApi
+
+
+'''author: kamar baraka'''
 
 
 class Registration(QDialog):

@@ -4,6 +4,9 @@ from LoginWindow import Login
 from Registration import Registration
 
 
+'''author: kamar baraka'''
+
+
 class MainWindow(QWidget):
 
     def __init__(self):
