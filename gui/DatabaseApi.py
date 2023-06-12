@@ -115,6 +115,14 @@ class DatabaseApi:
         }
         return 'ok'
 
+    def login(self, profile):
+
+        if (
+            profile['username'] in self.database['users'] and
+            profile['password'] == self.database['users'][profile['username']]['password']
+        ):
+            return 'ok'
+
 
 if __name__ == '__main__':
     db = DatabaseApi('database', './barcodes')
